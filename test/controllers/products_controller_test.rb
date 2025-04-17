@@ -11,6 +11,17 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "Should see elements in the products index" do
+    get products_url
+    assert_select "a", "New product"
+    assert_select "table tbody"
+    assert_select "table tfoot"
+    assert_select "table tbody tr td img"
+    assert_select "table tbody tr td ul li a", "Show"
+    assert_select "table tbody tr td ul li a", "Edit"
+    assert_select "table tbody tr td ul li a", "Destroy"
+  end
+
   test "should get new" do
     get new_product_url
     assert_response :success
